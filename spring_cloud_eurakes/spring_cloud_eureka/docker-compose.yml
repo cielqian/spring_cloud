@@ -1,0 +1,28 @@
+version: '2'
+services: 
+  eurekapeer1:
+    image: cielqian/spring_cloud_eureka
+    ports:
+      - "8001:9001"
+    environment:
+      - spring.profiles.active=eurekapeer1
+    # links: 
+    #   - eurekapeer2
+    networks:
+      - eureka-net
+  eurekapeer2:
+    image: cielqian/spring_cloud_eureka
+    ports:
+      - "8002:9001"
+    environment:
+      - spring.profiles.active=eurekapeer2
+    # links: 
+    #   - eurekapeer1
+    networks:
+      - eureka-net
+      
+networks:
+  eureka-net:
+    driver: bridge
+
+  
