@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: spring-cloud-eureka
+  profiles:
+    active: peer1
+peer:
+  peer1:
+    port: 9001
+  peer2:
+    port: 9002
+
+---
+eureka:
+  client:
+#    fetch-registry: false
+#    register-with-eureka: false
+    serviceUrl:
+      defaultZone: http://eurekapeer2:${peer.peer2.port}/eureka/
+  instance:
+    hostname: eurekapeer1
+spring:
+  profiles: peer1
+server:
+  port: ${peer.peer1.port}
+
+---
+eureka:
+  client:
+#    fetch-registry: false
+#    register-with-eureka: false
+    serviceUrl:
+      defaultZone: http://eurekapeer1:${peer.peer1.port}/eureka/
+    instance:
+        hostname: eurekapeer2
+spring:
+  profiles: peer2
+server:
+  port: ${peer.peer2.port}
