@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: spring-cloud-consumer-hystrix-dashboard-turbine
+server:
+  port: 9031
+turbine:
+  app-config: SPRING-CLOUD-CONSUMER
+  aggregator:
+    cluster-config: default
+  cluster-name-expression: new String("default")
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9001/eureka/
