@@ -1,0 +1,20 @@
+version: '2'
+services:
+  spring_cloud_eureka:
+    image: cielqian/spring_cloud_single_eureka
+  spring_cloud_producer_peer1:
+    image: cielqian/spring_cloud_producer
+    ports:
+      - '9012:9011'
+    depends_on:
+      - spring_cloud_eureka
+    links: 
+      - spring_cloud_eureka
+  spring_cloud_producer_peer2:
+    image: cielqian/spring_cloud_producer
+    ports:
+      - '9013:9011'
+    depends_on:
+      - spring_cloud_eureka
+    links: 
+      - spring_cloud_eureka
