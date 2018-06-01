@@ -1,0 +1,13 @@
+server:
+  port: 9041
+spring:
+  application:
+    name: spring-cloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/cielqian/spring-cloud-examples/
+          search-paths: config-repo
+          username: qianhong91@outlook.com
+          password: asd5215062
