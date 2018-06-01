@@ -3,11 +3,13 @@ spring:
     name: spring-cloud-eureka
 server:
   port: 9001
-
 eureka:
   client:
     fetch-registry: false
     register-with-eureka: false
     serviceUrl:
-      defaultZone: http://localhost:9001/eureka/
+      defaultZone: http://10.80.26.71:9001/eureka/
+  instance:
+    hostname: eureka
+    prefer-ip-address: true
 
