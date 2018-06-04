@@ -11,7 +11,18 @@ spring:
           search-paths: config-repo
           username: qianhong91@outlook.com
           password: asd5215062
+    bus:
+      trace:
+        enabled: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 eureka:
   client:
     serviceUrl:
       defaultZone: http://10.80.26.71:9001/eureka/
+management:
+  security:
+    enabled: false

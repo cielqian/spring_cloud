@@ -11,8 +11,10 @@ services:
   spring_cloud_producer_peer1:
     image: cielqian/spring_cloud_producer
     container_name: spring_cloud_producer_peer1
+    environment:
+      server.port: 9011
     ports:
-      - '9012:9011'
+      - '9011:9011'
     links: 
       - spring_cloud_eureka
     networks: 
@@ -20,8 +22,10 @@ services:
   spring_cloud_producer_peer2:
     image: cielqian/spring_cloud_producer
     container_name: spring_cloud_producer_peer2
+    environment:
+      server.port: 9012
     ports:
-      - '9013:9011'
+      - '9012:9012'
     depends_on:
       - spring_cloud_eureka
     links: 

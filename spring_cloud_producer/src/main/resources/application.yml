@@ -1,8 +1,17 @@
 spring:
   application:
     name: spring-cloud-producer
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    bus:
+      trace:
+        enabled: true
 server:
-  port: 9011
+  port: 9010
 eureka:
   client:
     serviceUrl:
