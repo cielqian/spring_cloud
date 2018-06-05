@@ -1,9 +1,16 @@
 # Spring Cloud Examples
 
 ## Eureka
-- single
-- two nodes
+port: 900x
 
 ## Feign
-- producer
-- consumer
+port: 901x
+
+## Hystrix
+port: 903x
+
+## ConfigServer
+port: 904x
+
+## Zuul
+port: 905x

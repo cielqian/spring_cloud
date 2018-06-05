@@ -23,6 +23,9 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://10.80.26.71:9001/eureka/
+    instance:
+        prefer-ip-address: true
+        instance-id: ${spring.cloud.client.ipAddress}:${server.port}
 management:
   security:
     enabled: false
