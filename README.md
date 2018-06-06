@@ -14,3 +14,6 @@ port: 904x
 
 ## Zuul
 port: 905x
+
+## Zipkin
+port: 906x

@@ -3,6 +3,8 @@ config:
     defaultZone:  http://10.80.29.106:9001/eureka/
   rabbitmq:
     host: 10.80.29.106
+  zipkin:
+    baseUrl: http://10.80.29.106:9060/
 spring:
   application:
     name: spring-cloud-producer
@@ -15,6 +17,11 @@ spring:
     bus:
       trace:
         enabled: true
+  zipkin:
+    base-url: ${config.zipkin.baseUrl}
+  sleuth:
+    sampler:
+      percentage: 1.0
 server:
   port: 9010
 eureka:
