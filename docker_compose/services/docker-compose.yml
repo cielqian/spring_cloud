@@ -1,0 +1,38 @@
+version: '2'
+services:
+  spring_cloud_producer_peer1:
+    image: cielqian/spring_cloud_producer
+    container_name: spring_cloud_producer_peer1
+    environment:
+      server.port: 9011
+    ports:
+      - '9011:9011'
+    # depends_on:
+    #   - spring_cloud_bus_amqp
+    #   - spring_cloud_eureka
+    #   - spring_cloud_config_server
+    # links: 
+    #   - spring_cloud_eureka
+    networks: 
+      # - 'spring-cloud-network'
+      - default
+  spring_cloud_producer_peer2:
+    image: cielqian/spring_cloud_producer
+    container_name: spring_cloud_producer_peer2
+    environment:
+      server.port: 9012
+    ports:
+      - '9012:9012'
+    # depends_on:
+    #   - spring_cloud_bus_amqp
+    #   - spring_cloud_eureka
+    #   - spring_cloud_config_server
+    # links: 
+    #   - spring_cloud_eureka
+    networks: 
+      # - 'spring-cloud-network'
+      - default
+networks:
+  default:
+    external:
+      name: spring-cloud-network

@@ -1,8 +1,8 @@
 config:
   eureka:
-    defaultZone:  http://10.80.26.71:9001/eureka/
+    defaultZone:  http://10.80.29.106:9001/eureka/
   rabbitmq:
-    host: localhost
+    host: 10.80.29.106
 spring:
   application:
     name: spring-cloud-producer
@@ -19,8 +19,8 @@ server:
   port: 9010
 eureka:
   client:
-    serviceUrl: ${config.eureka.defaultZone}
-      defaultZone: http://10.80.26.71:9001/eureka/
+    serviceUrl:
+      defaultZone: ${config.eureka.defaultZone}
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ipAddress}:${server.port}

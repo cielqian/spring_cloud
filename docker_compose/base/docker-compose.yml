@@ -1,0 +1,35 @@
+version: '2'
+services:
+  spring_cloud_bus_amqp:
+    image: rabbitmq
+    container_name: spring_cloud_bus_amqp
+    ports:
+      - '5672:5672'
+    networks:
+      # - 'spring-cloud-network'
+      - default
+  spring_cloud_config_server:
+    image: cielqian/spring_cloud_config_server
+    container_name: spring_cloud_config_server
+    environment:
+      server.port: 9041
+    ports:
+      - '9041:9041'
+    depends_on:
+      - spring_cloud_bus_amqp
+    networks: 
+      # - 'spring-cloud-network'
+      - default
+  spring_cloud_eureka:
+    image: cielqian/spring_cloud_eureka
+    hostname: eureka
+    container_name: spring_cloud_eureka
+    ports:
+      - '9001:9001'
+    networks: 
+      # - 'spring-cloud-network'
+      - default
+networks:
+  default:
+    external:
+      name: spring-cloud-network
