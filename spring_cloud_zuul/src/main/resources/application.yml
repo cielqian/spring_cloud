@@ -1,3 +1,6 @@
+config:
+  eureka:
+    defaultZone:  http://10.80.29.106:9001/eureka/
 spring:
   application:
     name: spring-cloud-api-gateway
@@ -6,4 +9,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://10.80.26.71:9001/eureka/
+      defaultZone: ${config.eureka.defaultZone}
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}

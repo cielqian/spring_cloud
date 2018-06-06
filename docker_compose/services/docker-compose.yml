@@ -1,5 +1,14 @@
 version: '2'
 services:
+  spring_cloud_api_gateway:
+    image: cielqian/spring_cloud_zuul
+    container_name: spring_cloud_api_gateway
+    environment:
+      server.port: 9051
+    ports:
+      - '9051:9051'
+    networks:
+      - default
   spring_cloud_producer_peer1:
     image: cielqian/spring_cloud_producer
     container_name: spring_cloud_producer_peer1
