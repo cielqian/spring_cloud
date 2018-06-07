@@ -1,12 +1,22 @@
+config:
+  eureka:
+    defaultZone:  http://10.80.29.106:9001/eureka/
+  zipkin:
+    baseUrl: http://10.80.29.106:9060/
 spring:
   application:
     name: spring-cloud-consumer
+  zipkin:
+    base-url: ${config.zipkin.baseUrl}
+  sleuth:
+    sampler:
+      percentage: 1.0
 server:
-  port: 9021
+  port: 9020
 feign:
   hystrix:
     enabled: true
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:9001/eureka/
+      defaultZone: ${config.eureka.defaultZone}

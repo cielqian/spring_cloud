@@ -9,14 +9,25 @@ services:
       - '9051:9051'
     networks:
       - default
+  spring_cloud_zipkin_server:
+    image: cielqian/spring_cloud_zipkin_server
+    container_name: spring_cloud_zipkin_server
+    environment:
+      server.port: 9061
+    ports:
+      - '9061:9061'
+    networks:
+      - default
   spring_cloud_producer_peer1:
     image: cielqian/spring_cloud_producer
     container_name: spring_cloud_producer_peer1
     environment:
       server.port: 9011
+      config.zipkin.baseUrl: 'http://10.80.29.106:9061/'
     ports:
       - '9011:9011'
-    # depends_on:
+    depends_on:
+      - spring_cloud_zipkin_server
     #   - spring_cloud_bus_amqp
     #   - spring_cloud_eureka
     #   - spring_cloud_config_server
@@ -25,22 +36,24 @@ services:
     networks: 
       # - 'spring-cloud-network'
       - default
-  spring_cloud_producer_peer2:
-    image: cielqian/spring_cloud_producer
-    container_name: spring_cloud_producer_peer2
-    environment:
-      server.port: 9012
-    ports:
-      - '9012:9012'
-    # depends_on:
-    #   - spring_cloud_bus_amqp
-    #   - spring_cloud_eureka
-    #   - spring_cloud_config_server
-    # links: 
-    #   - spring_cloud_eureka
-    networks: 
-      # - 'spring-cloud-network'
-      - default
+  # spring_cloud_producer_peer2:
+  #   image: cielqian/spring_cloud_producer
+  #   container_name: spring_cloud_producer_peer2
+  #   environment:
+  #     server.port: 9012
+  #     config.zipkin.baseUrl: 'http://10.80.29.106:9061/'
+  #   ports:
+  #     - '9012:9012'
+  #   depends_on:
+  #     - spring_cloud_zipkin_server
+  #   #   - spring_cloud_bus_amqp
+  #   #   - spring_cloud_eureka
+  #   #   - spring_cloud_config_server
+  #   # links: 
+  #   #   - spring_cloud_eureka
+  #   networks: 
+  #     # - 'spring-cloud-network'
+  #     - default
 networks:
   default:
     external:

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 public class ConfigApi {
 
-    @Value("${key}")
+//    @Value("${key}")
     String cfg;
 
     @RequestMapping("/key")
